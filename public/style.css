@@ -1,0 +1,99 @@
+@media (min-width: 992px) {
+  .app-header-menu .menu > .menu-item > .menu-link .menu-title {
+    flex-grow: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .app-header-menu .menu > .menu-item > .menu-link {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: 60px;
+  }
+  .app-header-menu .menu > .menu-item > .menu-link .menu-icon {
+    margin: 0;
+    margin-right: 0.5rem;
+    margin-bottom: 0rem;
+  }
+  .app-header-menu .menu > .menu-item > .menu-link .menu-icon,
+  .app-header-menu .menu > .menu-item > .menu-link .menu-icon .svg-icon,
+  .app-header-menu .menu > .menu-item > .menu-link .menu-icon i {
+    /* color: var(--bs-gray-400); */
+    color: #ffcc00;
+  }
+}
+.menu-title-gray-600 .menu-item .menu-link .menu-title {
+  color: var(--bs-text-gray-700);
+  font-size: 1.06rem;
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9;
+}
+/* [data-bs-theme=dark] .theme-light-show {
+    display: block !important;
+} */
+
+/* Style the options inside the dropdown */
+select option {
+  background-color: #fff; /* Background color of options */
+  color: #333; /* Font color of options */
+  padding: 10px; /* Padding inside each option */
+  font-size: 14px; /* Font size of options */
+
+  &:hover {
+    background-color: #7843e6;
+    color: #fff;
+  }
+}
+
+.text-primary {
+  color: #5f2c41 !important;
+  font-family: Jakarta Sans, sans-serif;
+}
+
+.app-header {
+  height: 60px !important;
+}
+
+.text-secondary {
+  color: #985772 !important;
+}
+
+.bg-secondary {
+  background-color: #985772 !important;
+}
+
+.fw-800px {
+  font-weight: 800 !important;
+}
+
+.bg-light {
+  background-color: #f0f0f0 !important;
+}
+
+.bg-tertiary {
+  background-color: #dcd3d6 !important;
+}
+
+.swal-btn-custom {
+  background-color: #5f2c41 !important; /* Set the button color */
+  color: white !important; /* Set the text color to white */
+  border: none !important; /* Remove border */
+}
+
+.swal2-popup .swal2-confirm {
+  background-color: #5f2c41 !important;
+  color: white !important;
+}
+
+.question-nowrap {
+  white-space: nowrap;
+  overflow-x: auto;
+  text-overflow: ellipsis;
+  display: block;
+}

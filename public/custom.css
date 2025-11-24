@@ -1,0 +1,184 @@
+/* ===================================
+   CENTRALIZED FONT CONFIGURATION
+   ===================================
+   Change fonts here to update them everywhere in the application
+*/
+
+:root {
+  /* Primary Font Family - Change this to update the main font */
+  --font-family-primary: 'Hind', Helvetica, sans-serif;
+  
+  /* Alternative Font Family - For headings or special elements */
+  --font-family-secondary: 'Plus Jakarta Sans', sans-serif;
+  
+  /* Fallback Font Family */
+  --font-family-fallback: Helvetica, Arial, sans-serif;
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+}
+
+/* Apply primary font to all elements */
+* {
+  font-family: var(--font-family-primary);
+}
+
+/* Ensure body and html use the primary font */
+body,
+html {
+  font-family: var(--font-family-primary) !important;
+}
+
+/* Apply secondary font to headings if desired */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-secondary);
+}
+
+/* Utility classes for font families */
+.font-primary {
+  font-family: var(--font-family-primary) !important;
+}
+
+.font-secondary {
+  font-family: var(--font-family-secondary) !important;
+}
+
+.font-fallback {
+  font-family: var(--font-family-fallback) !important;
+}
+
+/* Font weight utility classes */
+.font-light {
+  font-weight: var(--font-weight-light) !important;
+}
+
+.font-normal {
+  font-weight: var(--font-weight-normal) !important;
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium) !important;
+}
+
+.font-semibold {
+  font-weight: var(--font-weight-semibold) !important;
+}
+
+.font-bold {
+  font-weight: var(--font-weight-bold) !important;
+}
+
+.fadeInSidebar {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: fadeInLeftSidebar;
+}
+
+@keyframes fadeInLeftSidebar {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.accordion-item {
+  border: none !important;
+}
+
+.accordion-button:not(.collapsed) {
+  background: #eae3fb !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  /* margin: 12px 0px !important; */
+}
+
+.accordion-button {
+  font-size: 12px !important;
+  padding: 13px 15px !important;
+}
+
+.accordion-body {
+  padding: 0px 30px !important;
+}
+
+
+.direct-menu .accordion-button::after {
+  display: none;
+}
+
+.ml-10px {
+  margin-left: 10px;
+}
+
+.password-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.eye-password {
+  position: absolute;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.skeleton-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.skeleton-row {
+  display: flex;
+  gap: 10px;
+}
+
+.skeleton-cell {
+  flex: 1;
+  height: 20px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .skeleton-cell {
+    height: 16px;
+  }
+}

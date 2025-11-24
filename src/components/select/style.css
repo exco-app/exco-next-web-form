@@ -1,0 +1,135 @@
+.select-wrapper {
+    /* React Select Control Styles */
+}
+
+.select-wrapper .css-13cymwt-control {
+    border-style: none !important;
+    box-shadow: none !important;
+}
+
+.select-wrapper .css-t3ipsp-control {
+    border-style: none !important;
+    box-shadow: none !important;
+}
+
+.select-wrapper .css-t3ipsp-control:hover {
+    border-color: #fff !important;
+    box-shadow: none !important;
+}
+
+.select-wrapper .select-field-container {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.select-wrapper .select-label {
+    display: block;
+    font-size: 14px;
+    color: #6c4f7d;
+    margin-bottom: 8px;
+    text-align: start;
+}
+
+.select-wrapper .select-field {
+    width: 100%;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #d1b0cb;
+    color: #5f2c41;
+}
+
+.select-wrapper .css-1dimb5e-singleValue {
+    color: #4c3d56;
+}
+
+.select-wrapper .select-field:focus {
+    outline: none;
+    border-color: #6c4f7d;
+}
+
+.select-wrapper .css-hlgwow {
+    padding: 5px !important;
+}
+
+.select-wrapper .css-1jqq78o-placeholder {
+    color: var(--placeholder-color, #b0a3b3);
+    font-weight: var(--placeholder-font-weight, normal);
+    padding-left: 2px;
+}
+
+.select-wrapper .css-d7l1ni-option {
+    background-color: #5f2c41 !important;
+    color: #fff;
+}
+
+.select-wrapper .css-tr4s17-option {
+    background-color: #5f2c41 !important;
+    color: #fff;
+}
+
+.select-wrapper .css-1u9des2-indicatorSeparator {
+    display: none;
+}
+
+.select-wrapper .css-13cymwt-control:focus,
+.select-wrapper .css-13cymwt-control:active,
+.select-wrapper .css-t3ipsp-control:focus,
+.select-wrapper .css-t3ipsp-control:active {
+    outline: none;
+    border-color: #6c4f7d;
+}
+
+.select-wrapper .css-qr46ko {
+    padding: 0;
+}
+
+.select-wrapper .css-50695z-option,
+.select-wrapper .css-50695z-option:hover {
+    border: none;
+    background: #f0f0f0;
+    padding: 12px 12px !important;
+}
+
+.select-wrapper .css-pnj5q4-option {
+    border: none;
+    background: #fff;
+    padding: 12px 12px !important;
+}
+
+.select-wrapper .css-1twpgbo-menu {
+    margin-top: 5px;
+}
+
+.select-wrapper .css-1gxl6hf-control {
+    border-color: unset;
+    border-width: unset;
+    border-style: unset;
+    border-radius: unset;
+    height: var(--min-height, 41px) !important;
+    padding: 0 !important;
+}
+
+.select-wrapper .css-1ml5hng-option {
+    color: #5f2c41;
+    background-color: #fff;
+}
+
+.select-wrapper .css-1xc3v61-indicatorContainer,
+.select-wrapper .css-15lsz6c-indicatorContainer {
+    padding: 2px !important;
+}
+
+.select-wrapper .required-astrix {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    color: red;
+    font-size: 15px;
+    z-index: 1;
+}
+
+.select-wrapper .css-tj5bde-Svg {
+    width: 20px !important;
+    margin-top: 0px !important;
+    height: 15px !important;
+}
