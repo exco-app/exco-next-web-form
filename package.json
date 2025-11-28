@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "crypto-js": "^4.2.0",
+    "mixpanel-browser": "^2.72.0",
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-facebook-pixel": "^1.0.4",
+    "react-flatpickr": "^4.0.11",
     "react-select": "^5.10.2",
     "sonner": "^2.0.7",
     "uuid": "^13.0.0"

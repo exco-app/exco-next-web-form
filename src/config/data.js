@@ -159,3 +159,58 @@ export const phoneCode = [
   { code: "+385", country: "Croatia", flag: "🇭🇷" },
   { code: "+386", country: "Slovenia", flag: "🇸🇮" },
 ];
+
+// Step 2 data options
+export const professionalCategoryOptions = categoryChoices;
+
+export const howDidYouHearOptions = [
+  { label: "Social Media", value: 1 },
+  { label: "Friend/Colleague", value: 2 },
+  { label: "Email Newsletter", value: 3 },
+  { label: "Website", value: 4 },
+  { label: "Event", value: 5 },
+  { label: "Other", value: 6 },
+];
+
+export const whatAreYouLookingForOptions = [
+  { label: "Networking", value: 1 },
+  { label: "Learning", value: 2 },
+  { label: "Adventure", value: 3 },
+  { label: "Relaxation", value: 4 },
+  { label: "Cultural Experience", value: 5 },
+  { label: "Business Opportunities", value: 6 },
+];
+
+export const oneThingRuinsTripOptions = [
+  { label: "Poor Planning", value: 1 },
+  { label: "Bad Weather", value: 2 },
+  { label: "Uncomfortable Accommodation", value: 3 },
+  { label: "Unsafe Environment", value: 4 },
+  { label: "Lack of Communication", value: 5 },
+  { label: "Other", value: 6 },
+];
+
+export const occasionOptions = [
+  { label: "Birthday", value: 1 },
+  { label: "Anniversary", value: 2 },
+  { label: "Graduation", value: 3 },
+  { label: "Career Milestone", value: 4 },
+  { label: "Personal Achievement", value: 5 },
+  { label: "Other", value: 6 },
+];
+
+export const budgetRangeOptions = [
+  { label: "Under $1,000", value: 1 },
+  { label: "$1,000 - $2,500", value: 2 },
+  { label: "$2,500 - $5,000", value: 3 },
+  { label: "$5,000 - $10,000", value: 4 },
+  { label: "$10,000+", value: 5 },
+];
+
+export const whenWouldYouBookOptions = [
+  { label: "Immediately", value: 1 },
+  { label: "Within a week", value: 2 },
+  { label: "Within a month", value: 3 },
+  { label: "Within 3 months", value: 4 },
+  { label: "More than 3 months", value: 5 },
+];
