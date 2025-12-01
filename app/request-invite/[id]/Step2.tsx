@@ -193,7 +193,7 @@ const Step2: React.FC<Step2Props> = ({
                 </div>
             </div>
 
-            <div className={styles.step2Content} style={{ alignItems: 'center' }}>
+            <div className={styles.step2Content}>
                 {isMobile ? (
                     <>
                         <div className={styles.step2SectionWrapper}>
