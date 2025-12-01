@@ -1,5 +1,5 @@
 import React from "react";
-import { Wrapper } from "./style";
+import "./style.css";
 
 const InputField = ({
   label,
@@ -14,6 +14,7 @@ const InputField = ({
   maxRows = 5,
   length = 160, // Maximum character length
   onBlur,
+  onFocus,
 }) => {
   const handleFocus = (e) => {
     const val = e.target.value;
@@ -22,8 +23,8 @@ const InputField = ({
   };
 
   return (
-    <Wrapper>
-      <div className="input-field-container" style={{ position: "relative" }}>
+    <div className="input-field-wrapper">
+      <div className="input-field-container">
         {required && <span className="required-astrix">*</span>}
         {multiline ? (
           <>
@@ -74,7 +75,7 @@ const InputField = ({
           />
         )}
       </div>
-    </Wrapper>
+    </div>
   );
 };
 

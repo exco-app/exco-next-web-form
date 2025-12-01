@@ -12,6 +12,7 @@ export const ENDPOINT = prodMode
 export const BHX_ACCESS_TOKEN = process.env.REACT_APP_FACEBOOK_ACCESS_TOKEN_BHX;
 
 export const MIXPANEL_TOKEN = process.env.REACT_APP_MIXPANEL_TOKEN;
+
 export const BUCKETLIST_ACCESS_TOKEN =
   process.env.REACT_APP_FACEBOOK_ACCESS_TOKEN_BUCKETLIST;
 

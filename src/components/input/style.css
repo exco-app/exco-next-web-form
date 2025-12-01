@@ -1,0 +1,51 @@
+.input-field-wrapper .input-field-container {
+    /* margin-bottom: 20px; */
+    position: relative;
+}
+
+.input-field-wrapper .input-label {
+    display: block;
+    font-size: 16px;
+    color: #6c4f7d;
+    margin-bottom: 8px;
+    text-align: start;
+}
+
+.input-field-wrapper .input-field {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    line-height: 16px;
+    border: none;
+    border-bottom: none;
+    color: #4c3d56;
+    font-family: "Hind", sans-serif;
+    font-weight: 500;
+}
+
+.input-field-wrapper .input-field:focus {
+    outline: none;
+    border-bottom: none;
+}
+
+.input-field-wrapper input[type="date"]:focus,
+.input-field-wrapper input[type="text"]:focus,
+.input-field-wrapper input[type="number"]:focus {
+    background-color: #ffffffb0;
+
+}
+
+.input-field-wrapper .input-field::placeholder {
+    color: #b3ada3;
+    font-family: "Hind", sans-serif;
+
+}
+
+.input-field-wrapper .required-astrix {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    color: #fe664e;
+    font-size: 15px;
+    z-index: 1;
+}

@@ -1,5 +1,5 @@
 import mixpanel from "mixpanel-browser";
-import { MIXPANEL_TOKEN, prodMode } from "../../../config";
+import { MIXPANEL_TOKEN, prodMode } from "../config";
 
 const clevertap = window.clevertap;
 
@@ -26,6 +26,21 @@ export function trackCheckoutStep(stepNumber, formData) {
         });
     } catch (error) {
         console.error(`Error tracking checkout step ${stepNumber}:`, error);
+    }
+}
+
+export function trackStepCompleted(stepName, formData, editionData) {
+    try {
+        mixpanel.track(`${stepName} Filled`, {
+            step: stepName,
+            ...formData,
+            product: editionData?.name,
+            edition: editionData?.id,
+            project: editionData.project_name,
+            form_variant: "web",
+        });
+    } catch (error) {
+        console.error(`Error tracking ${stepName} filled:`, error);
     }
 }
 
