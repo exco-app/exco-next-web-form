@@ -234,21 +234,33 @@
     gap: 12px;
 }
 
+@media (max-width: 768px) {
+    .newTripInfo {
+        position: absolute;
+        bottom: 70px;
+        left: 0;
+        right: 0;
+        padding: 0 20px;
+        z-index: 10;
+    }
+}
+
 .newTripTitle {
     font-family: "Plus Jakarta Sans", sans-serif;
     font-weight: 700;
-    font-size: 28px;
+    font-size: 24px;
     line-height: 36px;
     letter-spacing: -0.6px;
-    color: #464646;
+    color: rgb(70, 70, 70);
     margin: 0;
     white-space: pre-wrap;
 }
 
 @media (max-width: 768px) {
     .newTripTitle {
-        font-size: 28px;
-        line-height: 36px;
+        color: rgb(255, 255, 255);
+        font-size: 24px;
+        line-height: 32px;
     }
 }
 
@@ -257,16 +269,35 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #919191;
+    color: rgb(70, 70, 70);
     margin: 0;
+}
+
+@media (max-width: 768px) {
+    .newTripMeta {
+        color: rgb(255, 255, 255);
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+    }
 }
 
 .newAvatarGroup {
     display: flex;
     align-items: center;
-    gap: 0;
+    /* gap: -8px; */
     position: relative;
     padding-right: 11px;
+}
+
+@media (max-width: 768px) {
+    .newAvatarGroup {
+        position: absolute;
+        bottom: 20px;
+        left: 16px;
+        z-index: 10;
+        padding-right: 11px;
+    }
 }
 
 .newAvatar {

@@ -12,21 +12,10 @@ import { useParams, useSearchParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import axios from "axios";
 import { ENDPOINT, hashData, hashDOB, hashGender, validateEmail } from "../../../src/config/index";
-import { formatDateToReadable } from "../../../src/utils/formHelpers";
 import { trackMetaEvent, fbqReady } from "../../../src/utils/pixelManager";
 import mixpanel from "mixpanel-browser";
-import CustomSelect from "../../../src/components/select";
-import InputField from "../../../src/components/input";
-import DatePicker from "../../../src/components/date-picker";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
-import {
-    fieldOfWorkChoices,
-    categoryChoices,
-    genderOptions,
-    phoneCode
-} from "../../../src/config/data";
-import styles from '../../HomePage.module.css';
 import { EditionData } from "./formUtils";
 
 interface FormData {

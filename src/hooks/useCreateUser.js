@@ -62,7 +62,7 @@ export const useCreateUser = (formData, setAuthToken, authToken) => {
                 edition: editionId || null,
                 referral_code: null,
             }
-            
+
             // Add last_name only if it exists
             if (formData?.lastName) {
                 userPayload.last_name = formData.lastName;
@@ -115,10 +115,10 @@ export const useCreateUser = (formData, setAuthToken, authToken) => {
 
             if (userId) {
                 mixpanel.identify(userId);
-                
+
                 // Set user properties in Mixpanel
-                const fullName = formData.lastName 
-                    ? `${formData.firstName} ${formData.lastName}` 
+                const fullName = formData.lastName
+                    ? `${formData.firstName} ${formData.lastName}`
                     : formData.firstName;
                 mixpanel.people.set({
                     $name: fullName,
@@ -202,7 +202,7 @@ export const useCreateUser = (formData, setAuthToken, authToken) => {
 
         // Build user_profile object for city, Instagram, or story
         const userProfile = {};
-        
+
         if (updateData.city) {
             userProfile.city = updateData.city;
         }
@@ -242,7 +242,7 @@ export const useCreateUser = (formData, setAuthToken, authToken) => {
                 data,
                 { headers }
             );
-            
+
             console.log("updateUserProfile success:", response.data);
             return { success: true };
         } catch (error) {

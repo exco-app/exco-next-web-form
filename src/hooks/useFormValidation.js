@@ -174,10 +174,10 @@ export const useFormValidation = (formData, editionData) => {
       }
 
       const fieldValue = formData[field];
-      
+
       // Debug: log the field and its value
       console.log(`Validating ${field}:`, fieldValue, typeof fieldValue);
-      
+
       const error = validateFieldValue(field, fieldValue);
       if (error) {
         isValid = false;
@@ -189,7 +189,7 @@ export const useFormValidation = (formData, editionData) => {
     if (!isValid) {
       setErrors(prev => ({ ...prev, ...formErrors }));
       console.log('Form validation failed. Errors:', formErrors);
-      
+
       // Show detailed error message
       const errorFields = Object.keys(formErrors);
       const fieldNames = {
@@ -199,10 +199,10 @@ export const useFormValidation = (formData, editionData) => {
         phoneNumber: 'Phone',
         email: 'Email'
       };
-      
+
       const missingFieldsText = errorFields.map(f => fieldNames[f] || f).join(', ');
       // toast.error(`Please fill all required fields correctly: ${missingFieldsText}`);
-      
+
       // Scroll to first error field
       const firstErrorField = errorFields[0];
       const element = document.querySelector(`[name="${firstErrorField}"]`);

@@ -106,46 +106,46 @@ const Step1: React.FC<Step1Props> = ({
                                 {editionData?.hero_image && (
                                     <img src={editionData.hero_image} alt={editionData.name} />
                                 )}
-                            </div>
-                            <div className={styles.newTripInfo}>
-                                <h2 className={styles.newTripTitle}>{editionData?.name || "F1 Monaco Grand Prix"}</h2>
-                                <p className={styles.newTripMeta}>
-                                    {getDateRange(editionData || undefined)} • {getDaysCount(editionData || undefined)} Days • {editionData?.project_name || "Srishti Tehri"}
-                                </p>
-                            </div>
-                            <div className={styles.newAvatarGroup}>
-                                {(() => {
-                                    const profileImages = editionData?.profile_images || [];
-                                    const maxVisible = 6;
-                                    const visibleImages = profileImages.slice(0, maxVisible);
-                                    const remainingCount = profileImages.length - maxVisible;
-                                    const countLeftPosition = `${(visibleImages.length * 28) - 11}px`;
+                                <div className={styles.newTripInfo}>
+                                    <h2 className={styles.newTripTitle}>{editionData?.name}</h2>
+                                    <p className={styles.newTripMeta}>
+                                        {getDateRange(editionData || undefined)} • {getDaysCount(editionData || undefined)} Days • {editionData?.project_name}
+                                    </p>
+                                </div>
+                                <div className={styles.newAvatarGroup}>
+                                    {(() => {
+                                        const profileImages = editionData?.profile_images || [];
+                                        const maxVisible = 6;
+                                        const visibleImages = profileImages.slice(0, maxVisible);
+                                        const remainingCount = profileImages.length - maxVisible;
+                                        const countLeftPosition = `${(visibleImages.length * 28) - 11}px`;
 
-                                    return (
-                                        <>
-                                            {visibleImages.map((imageUrl, index) => (
-                                                <div key={`avatar-${index}-${imageUrl}`} className={styles.newAvatar} style={{ marginLeft: index > 0 ? '-8px' : '0' }}>
-                                                    <img
-                                                        src={imageUrl}
-                                                        alt={`Profile ${index + 1}`}
-                                                        onError={(e) => {
-                                                            const target = e.target as HTMLImageElement;
-                                                            target.style.display = 'none';
-                                                            if (target.parentElement) {
-                                                                target.parentElement.style.backgroundColor = '#f0f0f0';
-                                                            }
-                                                        }}
-                                                    />
-                                                </div>
-                                            ))}
-                                            {remainingCount > 0 && (
-                                                <div className={styles.newAvatarCount} style={{ left: countLeftPosition }}>
-                                                    +{remainingCount}
-                                                </div>
-                                            )}
-                                        </>
-                                    );
-                                })()}
+                                        return (
+                                            <>
+                                                {visibleImages.map((imageUrl, index) => (
+                                                    <div key={`avatar-${index}-${imageUrl}`} className={styles.newAvatar} style={{ marginLeft: index > 0 ? '-8px' : '0' }}>
+                                                        <img
+                                                            src={imageUrl}
+                                                            alt={`Profile ${index + 1}`}
+                                                            onError={(e) => {
+                                                                const target = e.target as HTMLImageElement;
+                                                                target.style.display = 'none';
+                                                                if (target.parentElement) {
+                                                                    target.parentElement.style.backgroundColor = '#f0f0f0';
+                                                                }
+                                                            }}
+                                                        />
+                                                    </div>
+                                                ))}
+                                                {remainingCount > 0 && (
+                                                    <div className={styles.newAvatarCount} style={{ left: countLeftPosition }}>
+                                                        +{remainingCount}
+                                                    </div>
+                                                )}
+                                            </>
+                                        );
+                                    })()}
+                                </div>
                             </div>
                         </div>
                         <div className={styles.newDivider} />
@@ -167,7 +167,7 @@ const Step1: React.FC<Step1Props> = ({
                                                 onFocus={handleFieldFocus}
                                                 placeholder="+91"
                                                 required={false}
-                                                style={{ border: 'none', padding: 0, height: '100%' }}
+                                                style={{ border: 'none', padding: 12, height: '100%' }}
                                             />
                                         </div>
                                         <div className={styles.newPhoneNumberField} onFocus={handleFieldFocus}>
@@ -193,7 +193,7 @@ const Step1: React.FC<Step1Props> = ({
 
                                 <div className={styles.newFieldWrapper} data-field-wrapper>
                                     <label className={styles.newFieldLabel}>
-                                        Your Name <span className="required">*</span>
+                                        Your Name <span className="required"></span>
                                     </label>
                                     <div className={styles.newInputField} onFocus={handleFieldFocus}>
                                         <InputField
@@ -214,7 +214,7 @@ const Step1: React.FC<Step1Props> = ({
 
                                 <div className={styles.newFieldWrapper} data-field-wrapper style={{ marginBottom: '24px' }}>
                                     <label className={styles.newFieldLabel}>
-                                        Email <span className="required">*</span>
+                                        Email <span className="required"></span>
                                     </label>
                                     <div className={styles.newInputField} onFocus={handleFieldFocus}>
                                         <InputField
@@ -296,7 +296,6 @@ const Step1: React.FC<Step1Props> = ({
                                     </label>
                                     <div className={styles.newPhoneInputGroup}>
                                         <div className={styles.newCountryCodeField}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
                                             <InputField
                                                 type="tel"
                                                 name="countryCode"
@@ -305,7 +304,7 @@ const Step1: React.FC<Step1Props> = ({
                                                 onFocus={handleFieldFocus}
                                                 placeholder="+91"
                                                 required={false}
-                                                style={{ border: 'none', padding: 0, height: '100%' }}
+                                                style={{ border: 'none', padding: 12, height: '100%' }}
                                             />
                                         </div>
                                         <div className={styles.newPhoneNumberField} onFocus={handleFieldFocus}>

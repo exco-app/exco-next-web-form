@@ -16,10 +16,18 @@ export const formatDate = (dateString?: string): string => {
   return formatDateToReadable(dateString);
 };
 
+const formatDateWithoutYear = (dateString?: string): string => {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.toLocaleDateString("en-US", { month: "short" });
+  return `${day} ${month}`;
+};
+
 export const getDateRange = (editionData?: EditionData): string => {
   if (!editionData?.start_date || !editionData?.end_date) return "";
-  const start = formatDate(editionData.start_date);
-  const end = formatDate(editionData.end_date);
+  const start = formatDateWithoutYear(editionData.start_date);
+  const end = formatDateWithoutYear(editionData.end_date);
   return `${start} - ${end}`;
 };
 

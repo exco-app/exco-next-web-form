@@ -206,6 +206,7 @@ const Step2: React.FC<Step2Props> = ({
                                         </label>
                                         <div className={styles.newSelectFieldWrapper}>
                                             <CustomSelect
+                                                // @ts-ignore
                                                 options={genderOptions}
                                                 value={formData.gender}
                                                 onChange={(selectedOption: any) => {
@@ -254,8 +255,10 @@ const Step2: React.FC<Step2Props> = ({
                                             Professional Category <span className={styles.required}>*</span>
                                         </label>
                                         <div className={styles.newSelectFieldWrapper}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
+
                                             <CustomSelect
+                                                // @ts-ignore
+
                                                 options={professionalCategoryOptions}
                                                 value={formData.professionalCategory}
                                                 onChange={(selectedOption: any) => {
@@ -302,8 +305,10 @@ const Step2: React.FC<Step2Props> = ({
                                     <div className={styles.newFieldWrapper} data-field-wrapper>
                                         <label className={styles.newFieldLabel}>How did you hear about us?</label>
                                         <div className={styles.newSelectFieldWrapper}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
+
                                             <CustomSelect
+                                                // @ts-ignore
+
                                                 options={howDidYouHearOptions}
                                                 value={formData.howDidYouHear}
                                                 onChange={(selectedOption: any) => {
@@ -335,8 +340,10 @@ const Step2: React.FC<Step2Props> = ({
                                             What are you looking for? <span className={styles.required}>*</span>
                                         </label>
                                         <div className={styles.newSelectFieldWrapper}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
+
                                             <CustomSelect
+                                                // @ts-ignore
+
                                                 options={whatAreYouLookingForOptions}
                                                 value={formData.whatAreYouLookingFor && Array.isArray(formData.whatAreYouLookingFor)
                                                     ? formData.whatAreYouLookingFor
@@ -404,8 +411,10 @@ const Step2: React.FC<Step2Props> = ({
                                             One thing that ruins a trip for you? <span className={styles.required}>*</span>
                                         </label>
                                         <div className={styles.newSelectFieldWrapper}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
+
                                             <CustomSelect
+                                                // @ts-ignore
+
                                                 options={oneThingRuinsTripOptions}
                                                 value={formData.oneThingRuinsTrip}
                                                 onChange={(selectedOption: any) => {
@@ -432,8 +441,10 @@ const Step2: React.FC<Step2Props> = ({
                                     <div className={styles.newFieldWrapper} data-field-wrapper>
                                         <label className={styles.newFieldLabel}>What are you celebrating?</label>
                                         <div className={styles.newSelectFieldWrapper}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
+
                                             <CustomSelect
+                                                // @ts-ignore
+
                                                 options={occasionOptions}
                                                 value={formData.occasion}
                                                 onChange={(selectedOption: any) => {
@@ -483,8 +494,10 @@ const Step2: React.FC<Step2Props> = ({
                                     <div className={styles.newFieldWrapper} data-field-wrapper>
                                         <label className={styles.newFieldLabel}>Your estimated budget for this trip?</label>
                                         <div className={styles.newSelectFieldWrapper}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
+
                                             <CustomSelect
+                                                // @ts-ignore
+
                                                 options={budgetRangeOptions}
                                                 value={formData.estimatedBudget}
                                                 onChange={(selectedOption: any) => {
@@ -505,8 +518,10 @@ const Step2: React.FC<Step2Props> = ({
                                     <div className={styles.newFieldWrapper} data-field-wrapper style={{ marginBottom: '24px' }}>
                                         <label className={styles.newFieldLabel}>If invited, when would you book?</label>
                                         <div className={styles.newSelectFieldWrapper}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
+
                                             <CustomSelect
+                                                // @ts-ignore
+
                                                 options={whenWouldYouBookOptions}
                                                 value={formData.whenWouldYouBook}
                                                 onChange={(selectedOption: any) => {
@@ -539,6 +554,8 @@ const Step2: React.FC<Step2Props> = ({
                                         </label>
                                         <div className={styles.newSelectFieldWrapper}>
                                             <CustomSelect
+                                                // @ts-ignore
+
                                                 options={genderOptions}
                                                 value={formData.gender}
                                                 onChange={(selectedOption: any) => {
@@ -553,7 +570,6 @@ const Step2: React.FC<Step2Props> = ({
                                                     border: "none",
                                                     height: "480px",
                                                     minHeight: "48px",
-                                                    // backgroundColor: "red",
                                                 }}
                                                 styles={selectStyles}
                                             />
@@ -588,8 +604,10 @@ const Step2: React.FC<Step2Props> = ({
                                             Professional Category <span className={styles.required}>*</span>
                                         </label>
                                         <div className={styles.newSelectFieldWrapper}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
+
                                             <CustomSelect
+                                                // @ts-ignore
+
                                                 options={professionalCategoryOptions}
                                                 value={formData.professionalCategory}
                                                 onChange={(selectedOption: any) => {
@@ -637,6 +655,8 @@ const Step2: React.FC<Step2Props> = ({
                                         <label className={styles.newFieldLabel}>How did you hear about us?</label>
                                         <div className={styles.newSelectFieldWrapper}>
                                             <CustomSelect
+                                                // @ts-ignore
+
                                                 options={howDidYouHearOptions}
                                                 value={formData.howDidYouHear}
                                                 onChange={(selectedOption: any) => {
@@ -666,8 +686,10 @@ const Step2: React.FC<Step2Props> = ({
                                             What are you looking for? <span className={styles.required}>*</span>
                                         </label>
                                         <div className={styles.newSelectFieldWrapper}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
+
                                             <CustomSelect
+                                                // @ts-ignore
+
                                                 options={whatAreYouLookingForOptions}
                                                 value={formData.whatAreYouLookingFor && Array.isArray(formData.whatAreYouLookingFor)
                                                     ? formData.whatAreYouLookingFor
@@ -735,8 +757,8 @@ const Step2: React.FC<Step2Props> = ({
                                             One thing that ruins a trip for you? <span className={styles.required}>*</span>
                                         </label>
                                         <div className={styles.newSelectFieldWrapper}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
                                             <CustomSelect
+                                                // @ts-ignore
                                                 options={oneThingRuinsTripOptions}
                                                 value={formData.oneThingRuinsTrip}
                                                 onChange={(selectedOption: any) => {
@@ -763,8 +785,8 @@ const Step2: React.FC<Step2Props> = ({
                                     <div className={styles.newFieldWrapper} data-field-wrapper>
                                         <label className={styles.newFieldLabel}>What are you celebrating?</label>
                                         <div className={styles.newSelectFieldWrapper}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
                                             <CustomSelect
+                                                // @ts-ignore
                                                 options={occasionOptions}
                                                 value={formData.occasion}
                                                 onChange={(selectedOption: any) => {
@@ -812,8 +834,10 @@ const Step2: React.FC<Step2Props> = ({
                                     <div className={styles.newFieldWrapper} data-field-wrapper>
                                         <label className={styles.newFieldLabel}>Your estimated budget for this trip?</label>
                                         <div className={styles.newSelectFieldWrapper}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
+
                                             <CustomSelect
+                                                // @ts-ignore
+
                                                 options={budgetRangeOptions}
                                                 value={formData.estimatedBudget}
                                                 onChange={(selectedOption: any) => {
@@ -834,8 +858,10 @@ const Step2: React.FC<Step2Props> = ({
                                     <div className={styles.newFieldWrapper} data-field-wrapper>
                                         <label className={styles.newFieldLabel}>If invited, when would you book?</label>
                                         <div className={styles.newSelectFieldWrapper}>
-                                            {/* @ts-expect-error - CustomSelect is JS component without TS definitions */}
+
                                             <CustomSelect
+                                                // @ts-ignore
+
                                                 options={whenWouldYouBookOptions}
                                                 value={formData.whenWouldYouBook}
                                                 onChange={(selectedOption: any) => {

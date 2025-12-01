@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { ENDPOINT } from "../../src/config/index";
 import styles from '../ThankyouPage.module.css';
@@ -335,4 +335,12 @@ const ThankYouPage = () => {
     );
 };
 
-export default ThankYouPage;
+const ThankYouPageWithSuspense = () => {
+    return (
+        <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading...</div>}>
+            <ThankYouPage />
+        </Suspense>
+    );
+};
+
+export default ThankYouPageWithSuspense;

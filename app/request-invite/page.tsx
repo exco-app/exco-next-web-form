@@ -1,4 +1,4 @@
-'use client'; // Required for Next.js App Router if using hooks
+'use client';
 
 // Extend Window interface to include fbEventId
 declare global {
@@ -7,38 +7,32 @@ declare global {
     }
 }
 
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, Suspense } from "react";
 import { toast } from "sonner";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
     BHX_ACCESS_TOKEN,
     BUCKETLIST_ACCESS_TOKEN,
     ENDPOINT,
-    hashData,
-} from "../../src/config/index"; // Adjust path based on your Next.js structure
-import CustomSelect from "../../src/components/select"; // Adjust path
-import { formatDate, formatDateToReadable } from "../../src/utils/formHelpers"; // Adjust path
-import { initializePixel, trackMetaEvent, fbqReady } from "../../src/utils/pixelManager"; // Adjust path
+} from "../../src/config/index";
+import CustomSelect from "../../src/components/select";
+import { formatDate, formatDateToReadable } from "../../src/utils/formHelpers";
+import { initializePixel, trackMetaEvent, fbqReady } from "../../src/utils/pixelManager";
 import { v4 as uuidv4 } from 'uuid';
-import styles from '../HomePage.module.css'; // CSS Module
+import styles from '../HomePage.module.css';
 
-// Simple pixel hook for home page
-function useHomePagePixel() {
-    useEffect(() => {
-        const searchParams = new URLSearchParams(window.location.search);
-        const project = searchParams.get("project");
-        if (project && project.toLowerCase() === "bhx") {
-            initializePixel("630019181040627", "bhx").catch(err =>
-                console.error('[Pixel] Failed to initialize:', err)
-            );
-        } else if (project && project.toLowerCase() === "bucketlist") {
-            initializePixel("751008092884896", "bucketlist").catch(err =>
-                console.error('[Pixel] Failed to initialize:', err)
-            );
-        }
-    }, []);
 
-    return {};
+
+interface EditionData {
+    id: string;
+    name: string;
+    ip: string;
+    start_date: string;
+    end_date: string;
+    max_spots: number;
+    sold_count: number;
+    description?: string;
+    invite_count?: number;
 }
 
 const formatDateRange = (start: string | Date, end: string | Date) => {
@@ -63,13 +57,13 @@ const HomePage = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [editionLoading, setEditionLoading] = useState(false);
-    const [editionsList, setEditionList] = useState([]);
+    const [editionsList, setEditionList] = useState<EditionData[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
     const [formData, setFormData] = useState({
         edition: "",
     });
-    const [editionData, setEditionData] = useState([]);
+    const [editionData, setEditionData] = useState<EditionData | null>(null);
     const [page, setPage] = useState(1);
     const [ip, setIp] = useState(null);
 
@@ -152,7 +146,6 @@ const HomePage = () => {
 
     const getEditions = async (project: string | null) => {
         setEditionLoading(true);
-        console.log("project", project);
         try {
             const limitNew = debouncedSearchTerm ? 0 : 100;
             const offset = debouncedSearchTerm ? 0 : (page - 1) * 100;
@@ -168,11 +161,12 @@ const HomePage = () => {
 
             setEditionLoading(false);
 
-            const newOptions = data?.data?.map((item) => ({
-                value: item.id,
-                label: item.name,
-                date: formatDateRange(item.start_date, item.end_date),
-            }));
+            const newOptions = data?.data?.map((item: any) => (
+                {
+                    value: item.id,
+                    label: item.name,
+                    date: formatDateRange(item.start_date, item.end_date),
+                }));
 
             setEditionList((prevOptions) => {
                 const combined = [
@@ -185,22 +179,22 @@ const HomePage = () => {
 
                 return uniqueOptions;
             });
-        } catch (error) {
+        } catch (error: any) {
             toast.error(error.message);
             setEditionLoading(false);
             console.error("Error fetching data:", error);
         }
     };
 
-    const getEditionData = async (id) => {
+    const getEditionData = async (id: string) => {
         try {
             const response = await fetch(
                 `${ENDPOINT}/customer/api/editions/web/get-edition/?edition=${id}`
             );
-            const data = await response.json();
+            const data: EditionData = await response.json();
 
             setEditionData(data);
-        } catch (error) {
+        } catch (error: any) {
             toast.error(error.message);
             console.error("Error fetching data:", error);
         }
@@ -266,20 +260,21 @@ const HomePage = () => {
                                             <div className="col-md-8">
                                                 <div className={styles.selectionContainer}>
                                                     <CustomSelect
+                                                        // @ts-ignore
                                                         label="Edition"
                                                         placeholder="Find your experience..."
                                                         value={formData.edition}
-                                                        onChange={(value) => {
+                                                        onChange={(value: string) => {
                                                             getEditionData(value);
                                                         }}
                                                         searchable={true}
                                                         options={editionsList}
-                                                        onInputChange={(e) => {
+                                                        onInputChange={(e: string) => {
                                                             setSearchTerm(e);
                                                         }}
                                                         loading={editionLoading}
                                                         customLable={true}
-                                                        onMenuScrollToBottom={(e) => {
+                                                        onMenuScrollToBottom={() => {
                                                             if (!editionLoading) {
                                                                 setPage((prevState) => prevState + 1);
                                                             }
@@ -353,14 +348,14 @@ const HomePage = () => {
                                                                 <div className="text-primary fw-bold fs-8 mb-5 mt-2">
                                                                     {(() => {
                                                                         const startDate = new Date(
-                                                                            editionData?.start_date
+                                                                            editionData?.start_date || ''
                                                                         );
                                                                         const endDate = new Date(
-                                                                            editionData?.end_date
+                                                                            editionData?.end_date || ''
                                                                         );
 
                                                                         const durationInMilliseconds =
-                                                                            endDate - startDate;
+                                                                            endDate.getTime() - startDate.getTime();
 
                                                                         const days =
                                                                             Math.ceil(
@@ -518,5 +513,13 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+const HomePageWithSuspense = () => {
+    return (
+        <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'red' }}>Loading...</div>}>
+            <HomePage />
+        </Suspense>
+    );
+};
+
+export default HomePageWithSuspense;
 
