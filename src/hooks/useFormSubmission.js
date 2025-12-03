@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { ENDPOINT, hashData, hashDOB, hashGender } from '../config';
-import mixpanel from 'mixpanel-browser';
+import { safeTrack } from '../utils/mixpanel-helpers';
 import Swal from 'sweetalert2';
 export const useFormSubmission = (formData, editionData, otherParams, eventId, trackSubmitApplication) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -114,16 +114,14 @@ export const useFormSubmission = (formData, editionData, otherParams, eventId, t
       );
 
 
-      // Track request invite completed in mixpanel
-      try {
-        mixpanel.track("Request Invite Completed", {
+      // Track request invite completed in mixpanel (client-side only)
+      if (typeof window !== 'undefined') {
+        safeTrack("Request Invite Completed", {
           user_id: bookingResponse.data?.user_id,
           product: editionData?.name,
           edition: editionData?.id,
           project: editionData?.project_name,
         });
-      } catch (error) {
-        console.error("Error tracking request invite completed:", error);
       }
 
       // Handle pixel tracking
@@ -167,7 +165,7 @@ export const useFormSubmission = (formData, editionData, otherParams, eventId, t
             ge_check: hashGender(formData.gender),
             external_id: bookingResponse.data?.user_id,
             client_ip_address: "",
-            client_user_agent: navigator.userAgent,
+            client_user_agent: typeof window !== 'undefined' ? navigator.userAgent : "",
             event_time: eventTime,
           },
         };

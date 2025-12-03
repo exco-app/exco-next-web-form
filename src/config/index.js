@@ -9,12 +9,33 @@ export const ENDPOINT = prodMode
     ? "http://localhost:8000"
     : "https://dev-api.theexperience.co";
 
-export const BHX_ACCESS_TOKEN = process.env.REACT_APP_FACEBOOK_ACCESS_TOKEN_BHX;
+export const BHX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_FACEBOOK_ACCESS_TOKEN_BHX
 
-export const MIXPANEL_TOKEN = process.env.REACT_APP_MIXPANEL_TOKEN;
+export const MIXPANEL_TOKEN = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN;
 
 export const BUCKETLIST_ACCESS_TOKEN =
-  process.env.REACT_APP_FACEBOOK_ACCESS_TOKEN_BUCKETLIST;
+  process.env.NEXT_PUBLIC_FACEBOOK_ACCESS_TOKEN_BUCKETLIST
+
+// Facebook Pixel IDs
+export const BHX_PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID_BHX;
+export const BUCKETLIST_PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID_BUCKETLIST;
+
+// Helper function to get pixel ID based on project name
+export const getPixelId = (projectName) => {
+  if (!projectName) {
+    return BHX_PIXEL_ID || BUCKETLIST_PIXEL_ID; // Default to BHX if available, else Bucketlist
+  }
+
+  const projectUpper = projectName.toUpperCase();
+  if (projectUpper.includes('BHX')) {
+    return BHX_PIXEL_ID;
+  } else if (projectUpper.includes('BUCKETLIST')) {
+    return BUCKETLIST_PIXEL_ID;
+  }
+
+  // Default fallback
+  return BHX_PIXEL_ID || BUCKETLIST_PIXEL_ID;
+};
 
 export function suppressConsoleLogs() {
   if (process.env.NODE_ENV === "production") {

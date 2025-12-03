@@ -11,9 +11,9 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import axios from "axios";
-import { ENDPOINT, hashData, hashDOB, hashGender, validateEmail } from "../../../src/config/index";
-import { trackMetaEvent, fbqReady } from "../../../src/utils/pixelManager";
-import mixpanel from "mixpanel-browser";
+import { ENDPOINT, hashData, hashDOB, hashGender, validateEmail, getPixelId } from "../../../src/config/index";
+import { initializePixel, trackMetaEvent, fbqReady } from "../../../src/utils/pixelManager";
+import { mixpanelInit, safeTrack, CleverTapInit } from "../../../src/utils/mixpanel-helpers";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import { EditionData } from "./formUtils";
@@ -110,13 +110,44 @@ const RequestInvitePage = () => {
         }
     }, [editionId]);
 
+    // Initialize Pixel when editionData is available
     useEffect(() => {
-        if (typeof window === 'undefined') return;
-        const stableEventId = searchParams?.get('eventId') || sessionStorage.getItem('fbEventId') || window.fbEventId;
-        fbqReady
-            .then(() => trackMetaEvent('PageView', {}, stableEventId))
-            .catch(() => console.warn('PageView skipped—fbq never loaded'));
-    }, []);
+        if (typeof window === 'undefined' || !editionData) return;
+
+        const pixelId = getPixelId(editionData.project_name);
+        if (pixelId) {
+            const stableEventId = searchParams?.get('eventId') || sessionStorage.getItem('fbEventId') || window.fbEventId;
+            initializePixel(pixelId, editionData.project_name || 'Unknown', stableEventId)
+                .then(() => {
+                    // Track PageView after pixel is initialized
+                    trackMetaEvent('PageView', {}, stableEventId);
+                })
+                .catch((error) => {
+                    console.warn('Pixel initialization failed:', error);
+                });
+        } else {
+            console.warn('No pixel ID configured for project:', editionData.project_name);
+        }
+    }, [editionData]);
+
+    // Initialize Mixpanel when editionData is available
+    useEffect(() => {
+        if (typeof window === 'undefined' || !editionData) return;
+
+        // Extract UTM parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const otherParams = {
+            ss_source: urlParams.get('ss_source') || urlParams.get('utm_source') || null,
+            ss_medium: urlParams.get('ss_medium') || urlParams.get('utm_medium') || null,
+            ss_campaign: urlParams.get('ss_campaign') || urlParams.get('utm_campaign') || null,
+            ss_content: urlParams.get('ss_content') || urlParams.get('utm_content') || null,
+            ss_term: urlParams.get('ss_term') || urlParams.get('utm_term') || null,
+        };
+
+        // Initialize Mixpanel
+        mixpanelInit(otherParams, editionData);
+        CleverTapInit();
+    }, [editionData]);
 
     const fetchEditionData = async () => {
         try {
@@ -368,16 +399,14 @@ const RequestInvitePage = () => {
                 }
             );
 
-            // Track request invite completed in mixpanel
-            try {
-                mixpanel.track("Request Invite Completed", {
+            // Track request invite completed in mixpanel (client-side only)
+            if (typeof window !== 'undefined') {
+                safeTrack("Request Invite Completed", {
                     user_id: bookingResponse.data?.user_id,
                     product: editionData?.name,
                     edition: editionData?.id,
                     project: editionData?.project_name,
                 });
-            } catch (error) {
-                console.error("Error tracking request invite completed:", error);
             }
 
             // Handle pixel tracking

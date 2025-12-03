@@ -14,6 +14,7 @@ import {
     BHX_ACCESS_TOKEN,
     BUCKETLIST_ACCESS_TOKEN,
     ENDPOINT,
+    getPixelId,
 } from "../../src/config/index";
 import CustomSelect from "../../src/components/select";
 import { formatDate, formatDateToReadable } from "../../src/utils/formHelpers";
@@ -110,14 +111,25 @@ const HomePage = () => {
         getClientIp();
     }, []);
 
+    // Initialize pixel based on project parameter
     useEffect(() => {
         if (typeof window === 'undefined') return;
 
-        const stableEventId = sessionStorage.getItem('fbEventId') || window.fbEventId;
-        fbqReady
-            .then(() => trackMetaEvent('PageView', {}, stableEventId))
-            .catch(() => console.warn('PageView skipped—fbq never loaded'));
-    }, []);
+        const pixelId = getPixelId(project);
+        if (pixelId) {
+            const stableEventId = sessionStorage.getItem('fbEventId') || window.fbEventId || eventId;
+            initializePixel(pixelId, project || 'Unknown', stableEventId)
+                .then(() => {
+                    // Track PageView after pixel is initialized
+                    trackMetaEvent('PageView', {}, stableEventId);
+                })
+                .catch((error) => {
+                    console.warn('Pixel initialization failed:', error);
+                });
+        } else {
+            console.warn('No pixel ID configured for project:', project);
+        }
+    }, [project]);
 
     const sendUtmData = async () => {
         try {
