@@ -116,11 +116,11 @@ const RequestInvitePage = () => {
 
         const pixelId = getPixelId(editionData.project_name);
         if (pixelId) {
-            const stableEventId = searchParams?.get('eventId') || sessionStorage.getItem('fbEventId') || window.fbEventId;
-            initializePixel(pixelId, editionData.project_name || 'Unknown', stableEventId)
+            const stableEventId = searchParams?.get('eventId') || sessionStorage.getItem('fbEventId') || window.fbEventId || null;
+            initializePixel(pixelId, editionData.project_name || 'Unknown', (stableEventId ?? null) as any)
                 .then(() => {
                     // Track PageView after pixel is initialized
-                    trackMetaEvent('PageView', {}, stableEventId);
+                    trackMetaEvent('PageView', {}, stableEventId ?? undefined);
                 })
                 .catch((error) => {
                     console.warn('Pixel initialization failed:', error);
@@ -128,7 +128,7 @@ const RequestInvitePage = () => {
         } else {
             console.warn('No pixel ID configured for project:', editionData.project_name);
         }
-    }, [editionData]);
+    }, [editionData, searchParams]);
 
     // Initialize Mixpanel when editionData is available
     useEffect(() => {
