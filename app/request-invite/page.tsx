@@ -527,7 +527,7 @@ const HomePage = () => {
 
 const HomePageWithSuspense = () => {
     return (
-        <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading...</div>}>
+        <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading</div>}>
             <HomePage />
         </Suspense>
     );
