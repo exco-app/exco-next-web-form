@@ -1,10 +1,16 @@
 import { useState, useCallback } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { ENDPOINT } from '../config';
+import { ENDPOINT } from '../../../config';
 import mixpanel from 'mixpanel-browser';
 
-const clevertap = window.clevertap;
+// Safe access to clevertap (client-side only)
+const getCleverTap = () => {
+    if (typeof window !== 'undefined' && window.clevertap) {
+        return window.clevertap;
+    }
+    return null;
+};
 
 export const useCreateUser = (formData, setAuthToken, authToken) => {
     const [isCreating, setIsCreating] = useState(false);
@@ -114,31 +120,46 @@ export const useCreateUser = (formData, setAuthToken, authToken) => {
             }
 
             if (userId) {
-                mixpanel.identify(userId);
+                // Only track on client-side
+                if (typeof window !== 'undefined') {
+                    try {
+                        mixpanel?.identify(userId);
 
-                // Set user properties in Mixpanel
-                const fullName = formData.lastName
-                    ? `${formData.firstName} ${formData.lastName}`
-                    : formData.firstName;
-                mixpanel.people.set({
-                    $name: fullName,
-                    $email: formData.email,
-                    firstName: formData.firstName,
-                    lastName: formData.lastName || null,
-                    phone: `${formData.countryCode}${formData.phoneNumber}`,
-                    edition: editionName,
-                });
-
-                clevertap.profile.push({
-                    "Site": {
-                        "Identity": userId,
-                        "Name": `${formData.firstName} ${formData.lastName}`,
-                        "Email": formData.email,
-                        "Phone": `${formData.countryCode}${formData.phoneNumber}`,
-                        "Gender": formData.gender === 1 || formData.gender === 6 ? "F" : "M",
-                        "City": formData.city,
+                        // Set user properties in Mixpanel
+                        const fullName = formData.lastName
+                            ? `${formData.firstName} ${formData.lastName}`
+                            : formData.firstName;
+                        mixpanel.people.set({
+                            $name: fullName,
+                            $email: formData.email,
+                            firstName: formData.firstName,
+                            lastName: formData.lastName || null,
+                            phone: `${formData.countryCode}${formData.phoneNumber}`,
+                            edition: editionName,
+                        });
+                    } catch (error) {
+                        console.error("Error setting Mixpanel user properties:", error);
                     }
-                })
+
+                    // CleverTap tracking
+                    const clevertap = getCleverTap();
+                    if (clevertap) {
+                        try {
+                            clevertap.profile.push({
+                                "Site": {
+                                    "Identity": userId,
+                                    "Name": `${formData.firstName} ${formData.lastName}`,
+                                    "Email": formData.email,
+                                    "Phone": `${formData.countryCode}${formData.phoneNumber}`,
+                                    "Gender": formData.gender === 1 || formData.gender === 6 ? "F" : "M",
+                                    "City": formData.city,
+                                }
+                            });
+                        } catch (error) {
+                            console.error("Error setting CleverTap profile:", error);
+                        }
+                    }
+                }
             }
 
             return {
