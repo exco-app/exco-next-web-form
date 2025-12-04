@@ -118,7 +118,7 @@ const HomePage = () => {
         const pixelId = getPixelId(project);
         if (pixelId) {
             const stableEventId = sessionStorage.getItem('fbEventId') || window.fbEventId || eventId;
-            initializePixel(pixelId, project || 'Unknown', stableEventId)
+            initializePixel(pixelId, project || 'Unknown', stableEventId as unknown as null | undefined)
                 .then(() => {
                     // Track PageView after pixel is initialized
                     trackMetaEvent('PageView', {}, stableEventId);
