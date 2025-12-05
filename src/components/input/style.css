@@ -12,8 +12,9 @@
 }
 
 .input-field-wrapper .input-field {
-    width: 100%;
+    width: 160%;
     padding: 12px;
+
     font-size: 16px;
     line-height: 16px;
     border: none;

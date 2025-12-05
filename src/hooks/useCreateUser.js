@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { ENDPOINT } from '../../../config';
+import { ENDPOINT } from '../config';
 import mixpanel from 'mixpanel-browser';
 
 // Safe access to clevertap (client-side only)
