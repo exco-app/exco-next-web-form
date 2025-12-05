@@ -118,7 +118,43 @@ const Step2: React.FC<Step2Props> = ({
     isSubmitting,
     onSubmit,
 }) => {
+    console.log("formData", formData);
+    console.log("validation", validation);
     const selectStyles = getSelectStyles();
+
+    const handleDateInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const input = e.target.value;
+        // Remove all non-numeric characters
+        const numericValue = input.replace(/\D/g, '');
+
+        // Format as DD-MM-YYYY
+        let formattedValue = '';
+        if (numericValue.length > 0) {
+            formattedValue = numericValue.substring(0, 2); // DD
+            if (numericValue.length > 2) {
+                formattedValue += '-' + numericValue.substring(2, 4); // -MM
+            }
+            if (numericValue.length > 4) {
+                formattedValue += '-' + numericValue.substring(4, 8); // -YYYY
+            }
+        }
+
+        // Create a synthetic event with the formatted value
+        const syntheticEvent = {
+            ...e,
+            target: {
+                ...e.target,
+                value: formattedValue,
+                name: e.target.name,
+            },
+        } as React.ChangeEvent<HTMLInputElement>;
+
+        handleInputChange(syntheticEvent);
+
+        if (formattedValue && formattedValue.trim() !== '') {
+            trackStepCompleted(`Step2_${e.target.name}`, { [e.target.name]: formattedValue }, editionData);
+        }
+    };
 
     const handleInputChangeWithTracking = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fieldName = e.target.name;
@@ -132,8 +168,8 @@ const Step2: React.FC<Step2Props> = ({
     };
 
     const handleSelectChangeWithTracking = (selectedOption: any, fieldName: string) => {
-        handleSelectChange(fieldName)(selectedOption?.value || '');
-
+        handleSelectChange(fieldName)(selectedOption || '');
+        console.log("selectedOption", selectedOption, fieldName);
         if (selectedOption) {
             trackStepCompleted(`Step2_${fieldName}`, { [fieldName]: selectedOption }, editionData);
         }
@@ -214,6 +250,7 @@ const Step2: React.FC<Step2Props> = ({
                                                     if (validation.errors.gender && clearFieldError) {
                                                         clearFieldError("gender");
                                                     }
+                                                    updateField("gender", selectedOption?.value || '');
                                                 }}
                                                 onFocus={handleFieldFocus}
                                                 placeholder="Pick one"
@@ -239,8 +276,8 @@ const Step2: React.FC<Step2Props> = ({
                                                 type="text"
                                                 name="dateOfBirth"
                                                 value={formData.dateOfBirth}
-                                                onChange={handleInputChangeWithTracking}
-                                                placeholder="DD - MM - YYYY"
+                                                onChange={handleDateInputChange}
+                                                placeholder="DD-MM-YYYY"
                                                 required={false}
                                                 onBlur={() => { }}
                                             />
@@ -588,8 +625,8 @@ const Step2: React.FC<Step2Props> = ({
                                                 type="text"
                                                 name="dateOfBirth"
                                                 value={formData.dateOfBirth}
-                                                onChange={handleInputChangeWithTracking}
-                                                placeholder="DD - MM - YYYY"
+                                                onChange={handleDateInputChange}
+                                                placeholder="DD-MM-YYYY"
                                                 required={false}
                                                 onBlur={() => { }}
                                             />

@@ -21,7 +21,7 @@ export const useFormSubmission = (formData, editionData, otherParams, eventId, t
         } else if (dateStr.includes("-")) {
           const parts = dateStr.split("-");
           if (parts.length === 3) {
-            formattedDateOfBirth = `${parts[2]}-${parts[1]}-${parts[0]}`;
+            formattedDateOfBirth = `${parts[0]}-${parts[1]}-${parts[2]}`;
           }
         }
       }
@@ -70,7 +70,7 @@ export const useFormSubmission = (formData, editionData, otherParams, eventId, t
         professional_category: formData.professionalCategory || null,
         designation: formData.designation || null,
         what_are_you_looking_for: Array.isArray(formData.whatAreYouLookingFor)
-          ? formData.whatAreYouLookingFor.join(",")
+          ? formData.whatAreYouLookingFor.map(item => item?.value ?? item).join(",")
           : formData.whatAreYouLookingFor || null,
         one_thing_ruins_trip: formData.oneThingRuinsTrip || null,
         occasion: formData.occasion || null,
@@ -87,9 +87,6 @@ export const useFormSubmission = (formData, editionData, otherParams, eventId, t
         investment_range: formData.estimatedBudget || null,
         booking_timeline: formData.whenWouldYouBook || null,
       };
-
-      console.log("userPayload", userPayload);
-      console.log("bookingPayload", bookingPayload);
 
       // Call create-user API
       await axios.post(

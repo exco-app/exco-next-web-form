@@ -66,7 +66,11 @@ const CustomSelect = forwardRef(({
           value={
             multiple
               ? options.filter((option) => value.includes(option.value))
-              : options.find((option) => option.value === value)
+              : options.find((option) => {
+                // Handle type coercion: compare both as strings and numbers
+                // This handles cases where option.value is number but value prop is string (or vice versa)
+                return option.value == value || String(option.value) === String(value);
+              })
           }
           onChange={(selectedOption) =>
             onChange(
