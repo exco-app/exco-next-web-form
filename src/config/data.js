@@ -174,12 +174,15 @@ export const professionalCategoryOptions = [
 
 // How did you hear about us options
 export const howDidYouHearOptions = [
-  { label: "Social Media (Instagram/Facebook)", value: "social_media" },
-  { label: "Friend/Colleague Referral", value: "referral" },
-  { label: "Google Search", value: "google" },
-  { label: "Newsletter/Email", value: "email" },
-  { label: "Podcast", value: "podcast" },
-  { label: "Event/Conference", value: "event" },
+  { label: "Friend or tribe member told me about you", value: "friend_or_tribe_member" },
+  { label: "Instagram or social media discovery", value: "instagram_or_social_media_discovery" },
+  { label: "LinkedIn post or connection", value: "linkedin_post_or_connection" },
+  { label: "Google search for premium experiences", value: "google_search_for_premium_experiences" },
+  { label: "Podcast or interview mention", value: "podcast_or_interview_mention" },
+  { label: "Blog article or press coverage", value: "blog_article_or_press_coverage" },
+  { label: "Another travel or experience company", value: "another_travel_or_experience_company" },
+  { label: "Event or conference where you were mentioned", value: "event_or_conference_where_you_were_mentioned" },
+  { label: "Can’t remember exactly how", value: "cant_remember_exactly_how" },
   { label: "Other", value: "other" },
 ];
 
