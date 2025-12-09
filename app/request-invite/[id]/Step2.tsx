@@ -310,7 +310,7 @@ const Step2: React.FC<Step2Props> = ({
                                                 // @ts-ignore
 
                                                 options={howDidYouHearOptions}
-                                                value={formData.howDidYouHear}
+                                                value={howDidYouHearOptions.find(h => h.value === formData.howDidYouHear)}
                                                 onChange={(selectedOption: any) => {
                                                     handleSelectChangeWithTracking(selectedOption, "howDidYouHear");
                                                 }}
@@ -658,7 +658,7 @@ const Step2: React.FC<Step2Props> = ({
                                                 // @ts-ignore
 
                                                 options={howDidYouHearOptions}
-                                                value={formData.howDidYouHear}
+                                                value={howDidYouHearOptions.find(h => h.value === formData.howDidYouHear)}
                                                 onChange={(selectedOption: any) => {
                                                     handleSelectChangeWithTracking(selectedOption, "howDidYouHear");
                                                 }}
