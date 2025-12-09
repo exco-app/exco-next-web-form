@@ -14,7 +14,8 @@
 }
 
 .select-field-container {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+    padding: 2px;
     position: relative;
 }
 

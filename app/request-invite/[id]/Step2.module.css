@@ -363,8 +363,7 @@
     border: 1px solid #c4c4c4;
     border-radius: 8px;
     min-height: 48px;
-    /* height: auto;q */
-    height: 54px;
+    height: auto;
     background-color: #ffffff;
     box-sizing: border-box;
     position: relative;
