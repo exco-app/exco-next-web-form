@@ -132,10 +132,16 @@ const Step2: React.FC<Step2Props> = ({
     };
 
     const handleSelectChangeWithTracking = (selectedOption: any, fieldName: string) => {
-        handleSelectChange(fieldName)(selectedOption?.value || '');
+        // CustomSelect passes selectedOption.value (primitive) when wantLabel is false (default)
+        // So selectedOption is already the value (number/string), not an object
+        // Handle both cases: if it's an object with .value, use that; otherwise use selectedOption directly
+        const value = selectedOption && typeof selectedOption === 'object' && 'value' in selectedOption
+            ? selectedOption.value
+            : selectedOption;
+        handleSelectChange(fieldName)(value || '');
 
-        if (selectedOption) {
-            trackStepCompleted(`Step2_${fieldName}`, { [fieldName]: selectedOption }, editionData);
+        if (value) {
+            trackStepCompleted(`Step2_${fieldName}`, { [fieldName]: value }, editionData);
         }
     };
 

@@ -224,10 +224,6 @@ const RequestInvitePage = () => {
             toast.error('First name is required');
             return false;
         }
-        if (!formData.lastName.trim()) {
-            toast.error('Last name is required');
-            return false;
-        }
         if (!formData.email.trim()) {
             toast.error('Email is required');
             return false;
@@ -248,14 +244,6 @@ const RequestInvitePage = () => {
             toast.error('Gender is required');
             return false;
         }
-        if (!formData.fieldOfWork) {
-            toast.error('Field of work is required');
-            return false;
-        }
-        if (!formData.category) {
-            toast.error('Category is required');
-            return false;
-        }
         return true;
     };
 
@@ -267,7 +255,6 @@ const RequestInvitePage = () => {
 
     const validateStep2 = (): boolean => {
         const errors: Validation['errors'] = {};
-
         if (!formData.gender) {
             errors.gender = 'Gender is required';
         }
