@@ -344,25 +344,37 @@ const RequestInvitePage = () => {
                     event_id: eventId,
                     fbclid: null,
                 },
-                professional_category: formData.professionalCategory ? parseInt(formData.professionalCategory) : null,
+                professional_category: formData.professionalCategory && formData.professionalCategory !== '' ? formData.professionalCategory : null,
                 designation: formData.designation || null,
                 what_are_you_looking_for: Array.isArray(formData.whatAreYouLookingFor)
                     ? formData.whatAreYouLookingFor.map((item: any) => item.value || item).join(",")
                     : formData.whatAreYouLookingFor || null,
                 one_thing_ruins_trip: formData.oneThingRuinsTrip || null,
                 occasion: formData.occasion || null,
-                investment_range: formData.estimatedBudget || null,
-                booking_timeline: formData.whenWouldYouBook || null,
             };
 
+            // Add investment_range and booking_timeline only if they have values
+            if (formData.estimatedBudget && formData.estimatedBudget !== '' && formData.estimatedBudget !== null && formData.estimatedBudget !== undefined) {
+                userPayload.investment_range = formData.estimatedBudget;
+            }
+            if (formData.whenWouldYouBook && formData.whenWouldYouBook !== '' && formData.whenWouldYouBook !== null && formData.whenWouldYouBook !== undefined) {
+                userPayload.booking_timeline = formData.whenWouldYouBook;
+            }
+
             // Prepare booking payload
-            const bookingPayload = {
+            const bookingPayload: any = {
                 phone: `${formData.countryCode}${formData.phoneNumber}`,
                 edition: editionId,
                 intentions: " story is deprecated ",
-                investment_range: formData.estimatedBudget || null,
-                booking_timeline: formData.whenWouldYouBook || null,
             };
+
+            // Add investment_range and booking_timeline only if they have values
+            if (formData.estimatedBudget && formData.estimatedBudget !== '' && formData.estimatedBudget !== null && formData.estimatedBudget !== undefined) {
+                bookingPayload.investment_range = formData.estimatedBudget;
+            }
+            if (formData.whenWouldYouBook && formData.whenWouldYouBook !== '' && formData.whenWouldYouBook !== null && formData.whenWouldYouBook !== undefined) {
+                bookingPayload.booking_timeline = formData.whenWouldYouBook;
+            }
 
             // Call update-user-details API
             await axios.post(
