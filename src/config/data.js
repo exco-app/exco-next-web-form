@@ -160,57 +160,79 @@ export const phoneCode = [
   { code: "+386", country: "Slovenia", flag: "🇸🇮" },
 ];
 
-// Step 2 data options
-export const professionalCategoryOptions = categoryChoices;
-
-export const howDidYouHearOptions = [
-  { label: "Social Media", value: 1 },
-  { label: "Friend/Colleague", value: 2 },
-  { label: "Email Newsletter", value: 3 },
-  { label: "Website", value: 4 },
-  { label: "Event", value: 5 },
-  { label: "Other", value: 6 },
+// Professional Category Options (using categoryChoices)
+export const professionalCategoryOptions = [
+  { value: "founder", label: "Founder / Co-founder" },
+  { value: "entrepreneur", label: "Business Owner / Entrepreneur" },
+  { value: "creative", label: "Creative Freelancer (Artist, Designer, Writer)" },
+  { value: "corporate", label: "Corporate Professional" },
+  { value: "wellness", label: "Wellness Professional" },
+  { value: "career_break", label: "Career Break / Exploring" },
+  { value: "student", label: "Student / Learning" },
+  { value: "other", label: "Other" },
 ];
+
+// How did you hear about us options
+export const howDidYouHearOptions = [
+  { label: "Friend or tribe member told me about you", value: "friend_or_tribe_member" },
+  { label: "Instagram or social media discovery", value: "instagram_or_social_media_discovery" },
+  { label: "LinkedIn post or connection", value: "linkedin_post_or_connection" },
+  { label: "Google search for premium experiences", value: "google_search_for_premium_experiences" },
+  { label: "Podcast or interview mention", value: "podcast_or_interview_mention" },
+  { label: "Blog article or press coverage", value: "blog_article_or_press_coverage" },
+  { label: "Another travel or experience company", value: "another_travel_or_experience_company" },
+  { label: "Event or conference where you were mentioned", value: "event_or_conference_where_you_were_mentioned" },
+  { label: "Can’t remember exactly how", value: "cant_remember_exactly_how" },
+  { label: "Other", value: "other" },
+];
+
 
 export const whatAreYouLookingForOptions = [
-  { label: "Networking", value: 1 },
-  { label: "Learning", value: 2 },
-  { label: "Adventure", value: 3 },
-  { label: "Relaxation", value: 4 },
-  { label: "Cultural Experience", value: 5 },
-  { label: "Business Opportunities", value: 6 },
+  { label: "⚡️ High Adrenaline", value: "adventure" },
+  { label: "🍷 Relaxed Luxury", value: "luxury" },
+  { label: "🤝 Meaningful Networking", value: "networking" },
+  { label: "🎉 Social & Nightlife", value: "social" },
+  { label: "📸 Content Creation", value: "content" },
+  { label: "🧘 Deep Disconnect", value: "disconnect" },
+  { label: "🏄 Learn Something New", value: "learn" },
 ];
 
+
 export const oneThingRuinsTripOptions = [
-  { label: "Poor Planning", value: 1 },
-  { label: "Bad Weather", value: 2 },
-  { label: "Uncomfortable Accommodation", value: 3 },
-  { label: "Unsafe Environment", value: 4 },
-  { label: "Lack of Communication", value: 5 },
-  { label: "Other", value: 6 },
+  { label: "⏰ People being late", value: "late" },
+  { label: "😴 Too much downtime / Being bored", value: "bored" },
+  { label: "🏃‍♂️ Rushing from spot to spot", value: "rush" },
+  { label: "🏨 Bad accommodation/hygiene", value: "hygiene" },
+  { label: "🤐 Forced social interaction (I need 'me time')", value: "me_time" },
 ];
 
 export const occasionOptions = [
-  { label: "Birthday", value: 1 },
-  { label: "Anniversary", value: 2 },
-  { label: "Graduation", value: 3 },
-  { label: "Career Milestone", value: 4 },
-  { label: "Personal Achievement", value: 5 },
-  { label: "Other", value: 6 },
+  { label: "Career milestone/transition moment", value: "career_milestone" },
+  { label: "Personal growth phase I'm in", value: "personal_growth" },
+  { label: "Celebrating a recent achievement", value: "recent_achievement" },
+  { label: "Between projects/seasons of life", value: "between_projects" },
+  { label: "Need creative inspiration/reset", value: "creative_inspiration" },
+  { label: "Perfect timing in my calendar", value: "perfect_timing" },
+  { label: "Ready to expand my world", value: "ready_to_expand" },
+  { label: "Just feels like the right moment", value: "right_moment" },
 ];
 
+// Budget range options
 export const budgetRangeOptions = [
-  { label: "Under $1,000", value: 1 },
-  { label: "$1,000 - $2,500", value: 2 },
-  { label: "$2,500 - $5,000", value: 3 },
-  { label: "$5,000 - $10,000", value: 4 },
-  { label: "$10,000+", value: 5 },
+  { label: "₹0 - ₹50,000", value: "0_50k" },
+  { label: "₹50,000 - ₹1,00,000", value: "50k_100k" },
+  { label: "₹1,00,000 - ₹1,50,000", value: "100k_150k" },
+  { label: "₹1,50,000 - ₹2,00,000", value: "150k_200k" },
+  { label: "₹2,00,000 - ₹3,00,000", value: "200k_300k" },
+  { label: "₹3,00,000 - ₹5,00,000", value: "300k_500k" },
+  { label: "₹5,00,000+", value: "500k_plus" },
 ];
 
 export const whenWouldYouBookOptions = [
-  { label: "Immediately", value: 1 },
-  { label: "Within a week", value: 2 },
-  { label: "Within a month", value: 3 },
-  { label: "Within 3 months", value: 4 },
-  { label: "More than 3 months", value: 5 },
+  { label: "Within 48 hours", value: "within_48_hours" },
+  { label: "Within 3-7 days", value: "within_3_7_days" },
+  { label: "Within 1-2 weeks", value: "within_1_2_weeks" },
+  { label: "Within 3-4 weeks", value: "within_3_4_weeks" },
+  { label: "After a specific date / payout / visa update", value: "after_specific_date" },
+  { label: "I need more time / still deciding", value: "i_need_more_time" },
 ];
